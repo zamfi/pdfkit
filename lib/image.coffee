@@ -10,7 +10,7 @@ PNG = require './image/png'
 
 class PDFImage
     @open: (filename) ->
-        @contents = fs.readFileSync filename
+        @contents = if filename instanceof Buffer then filename else fs.readFileSync filename
         return unless @contents
         
         @data = new Data @contents
